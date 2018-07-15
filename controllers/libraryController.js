@@ -19,6 +19,33 @@ router.get("/", (req, res) => {
   });
 });
 
+//==========================
+//CREATE NEW ROUTE
+//==========================
+router.post('/', (req, res) => {
+ console.log(req.body, 'this is req.body, should be form info')
+ if(req.body.read === 'on'){
+  req.body.read = true;
+ } else{
+  req.body.read = false;
+ }
+ Library.create(req.body, (err, addedLibrary) => {
+   if(err){
+    console.log(err)
+    res.send(err)
+   }else{
+    console.log(addedLibrary)
+    res.redirect('/library')
+   }
+ });
+});
+
+//====================
+//NEW ROUTE
+//====================
+router.get('/id:new', (req, res) => {
+ res.render('new.ejs') 
+});
 
 
 
