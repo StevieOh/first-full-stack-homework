@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Library</title>
+</head>
+<body>
+  <h1>Books In My Library</h1>
+  <ul>
+    <% for(let i = 0; i < library.length; i++){%>
+    <li>
+      <a href="/library/<%=i%>"><%=library[i].title;%>.</a><br>
+      <%if(library[i].read === true){%>
+        You have read this book
+        <%} else{%>
+        You have not yet ready this book
+        <%}%>
+    </li>
+  </ul>
+
+</body>
+</html>
