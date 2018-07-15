@@ -5,6 +5,7 @@ const librarySchema = new mongoose.Schema({
   author: String,
   publishDate: Number,
   ISBN: Number,
+  currentlyReading: Boolean,
   read: Boolean
 })
 

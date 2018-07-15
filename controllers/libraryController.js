@@ -24,6 +24,11 @@ router.get("/", (req, res) => {
 //==========================
 router.post('/', (req, res) => {
  console.log(req.body, 'this is req.body, should be form info')
+ if(req.body.currentlyReading === 'on'){
+  req.body.currentlyReading = true;
+ } else{
+  req.body.currentlyReading = false;
+ }
  if(req.body.read === 'on'){
   req.body.read = true;
  } else{
@@ -43,12 +48,28 @@ router.post('/', (req, res) => {
 //====================
 //NEW ROUTE
 //====================
-router.get('/id:new', (req, res) => {
+router.get('/new', (req, res) => {
  res.render('new.ejs') 
 });
 
+router.get('/:id/edit', (req, res) => {
+ Library.findById(req.params.id, (err, foundLibrary) => {
+  res.render('edit.ejs', {
+    library: foundLibrary,
+    index: req.params.index
+  })
+ }) 
+})
 
-
+//=====================
+//EDIT ROUTE
+//=====================
+router.get('/:index/edit', (req, res) => {
+ console.log('hitting edit route')
+ res.render('edit.ejs', {
+  library: foundLibrary
+ }) 
+})
 
 
 module.exports = router;
