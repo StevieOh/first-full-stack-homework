@@ -2,12 +2,12 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override')
+const ejsLint = require('ejs-lint');
 
 require('./db/db')
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
-app.use(express.static('public'))
 
 const libraryController = require('./controllers/libraryController');
 
