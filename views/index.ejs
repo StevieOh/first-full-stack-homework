@@ -19,6 +19,13 @@
     <%} else {%>
     You have not yet read this book.
     <%} %>
+
+    <form method="POST" action="/library/<% library[i].id%>?_method=DELETE">
+      <input type="submit" name="DELETE">
+    </form>
+   
+    <a href="/library/<%=library[i].id%>/edit">EDIT</a>
+    
 <%} %>
 
     </li>

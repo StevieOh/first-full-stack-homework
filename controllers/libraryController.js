@@ -73,9 +73,9 @@ router.get('/:index/edit', (req, res) => {
 //=====================
 //SHOW ROUTE
 //=====================
-router.get('/:id', (req, res) => {
+router.get('/:index', (req, res) => {
  res.render('show.ejs', {
-  library: Library[req.params.id]
+  library: Library[req.params.index]
  }) 
 })
 //=====================
@@ -102,6 +102,16 @@ router.put('/:id', (req, res) => {
    }
  })
 });
-
+//====================
+//DELETE ROUTE
+//====================
+router.delete('/:id', (req, res) => {
+ Library.findByIdAndRemove(req.params.id, (err, removedLibrary) => {
+   if(err){
+    console.log(err, 'this is the error in the delete route');
+    res.redirect('/library')
+   }
+ }) 
+})
 
 module.exports = router;
