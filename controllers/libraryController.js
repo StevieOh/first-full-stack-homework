@@ -70,6 +70,38 @@ router.get('/:index/edit', (req, res) => {
   library: foundLibrary
  }) 
 })
+//=====================
+//SHOW ROUTE
+//=====================
+router.get('/:id', (req, res) => {
+ res.render('show.ejs', {
+  library: Library[req.params.id]
+ }) 
+})
+//=====================
+//UPDATE ROUTE
+//=====================
+router.put('/:id', (req, res) => {
+ console.log('hitting the put route')
+ if(req.body.currentlyReading === 'on'){
+  req.body.currentlyReading = true;
+ } else{
+  req.body.currentlyReading = false;
+ }
+ if (req.body.read === 'on') {
+  req.body.read = true;
+ }else{
+  req.body.read = false;
+ }
+ Library.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedLibrary) => {
+   if(err){
+    res.send(err);
+   }else{
+    console.log(updatedLibrary, 'check your model')
+    res.redirect('/library')
+   }
+ })
+});
 
 
 module.exports = router;

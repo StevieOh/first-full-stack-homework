@@ -4,7 +4,7 @@ const librarySchema = new mongoose.Schema({
   title: String,
   author: String,
   publishDate: Number,
-  ISBN: Number,
+  ISBN: String,
   currentlyReading: Boolean,
   read: Boolean
 })

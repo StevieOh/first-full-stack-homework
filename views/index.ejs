@@ -7,11 +7,19 @@
   <h1>Books In My Library</h1>
   <ul>
 
-  <% for (var i = 0; i < library.length; i++) { -%>
-    <li>  
-      <a href="/library/<%=i%>"><%=library[i].title; %></a>.
-        
-    <% } -%>
+  <% for (let i = 0; i < library.length; i++) { %>
+    <li> 
+
+    <a href="/library/<%=i%>"><%=library[i].title; %></a>, written by <%=library[i].author;%>. <br> <%if(library[i].currentlyReading === true){%>
+    You are currently reading this book.
+    <%} else {%>
+    <%} %>
+    <%if(library[i].read === true){%>
+    You have previously read this book.
+    <%} else {%>
+    You have not yet read this book.
+    <%} %>
+<%} %>
 
     </li>
   </ul>
